@@ -8,14 +8,18 @@ module.exports = {
   entry: './src/app.js',
   output: {
     path: path.join(__dirname, 'build'),
-    filename: 'bundle.js',
+    filename: 'bundle.min.js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
   plugins: [
-    new HtmlWebpackPlugin()
-  ],
+    new HtmlWebpackPlugin({
+      hash: true,
+      title: "Trello Experiment App",
+      template: "./src/index.html",
+      filename: './build/index.html' //relative to root of the application
+    })],
   module: {
     rules: [
       {
