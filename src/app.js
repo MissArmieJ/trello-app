@@ -9,18 +9,21 @@ import {createBrowserHistory} from 'history';
 import createSagaMiddleware from "redux-saga"
 import reducers from "./reducers"
 import sagas from "./sagas"
-import HelloWorld from "./components/HelloWorld";
+import CardContainer from "./containers/cardContainer";
 
 const sagaMiddleware = createSagaMiddleware()
-const composeEnhancers = compose
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const history = createBrowserHistory()
 
-export const store = createStore(
-  combineReducers({
-    ...reducers,
-  }),
+export const store = createStore(reducers,
   composeEnhancers(applyMiddleware(routerMiddleware(history), sagaMiddleware)),
 )
+
+
+//  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+//  const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
+//   applyMiddleware(...sagaMiddleware)
+// ));
 
 sagaMiddleware.run(sagas)
 
@@ -30,7 +33,7 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Switch>
-        <Route path="/" component={HelloWorld} exact={true} />
+        <Route path="/" component={CardContainer} exact={true} />
       </Switch>
     </Router>
   </Provider>,
