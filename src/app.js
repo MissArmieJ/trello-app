@@ -8,7 +8,7 @@ import {Router, Route, Switch} from "react-router-dom"
 import {createBrowserHistory} from 'history';
 import createSagaMiddleware from "redux-saga"
 import reducers from "./reducers"
-import sagas from "./sagas"
+import rootSaga from "./sagas"
 import CardContainer from "./containers/cardContainer";
 
 const sagaMiddleware = createSagaMiddleware()
@@ -19,13 +19,7 @@ export const store = createStore(reducers,
   composeEnhancers(applyMiddleware(routerMiddleware(history), sagaMiddleware)),
 )
 
-
-//  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-//  const store = createStore(reducers, /* preloadedState, */ composeEnhancers(
-//   applyMiddleware(...sagaMiddleware)
-// ));
-
-sagaMiddleware.run(sagas)
+sagaMiddleware.run(rootSaga)
 
 const main = document.getElementById('main');
 
