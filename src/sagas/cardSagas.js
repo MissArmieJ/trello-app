@@ -1,14 +1,14 @@
-import {call,takeEvery} from "redux-saga/effects"
+import {call, put, takeEvery} from "redux-saga/effects"
 
 import fetch from "node-fetch";
-import {fetchCards} from "../actions/actions"
+import {fetchCards, cardsFetched} from "../actions/actions"
 
-function* fetchAllCards(){
-  const boardId = "QUpFTbXx"
-  const url = "https://api.trello.com/1/boards/" + boardId+ "/cards"
-  return yield call(fetch, url, null)
+export const delay = (ms) => new Promise(res => setTimeout(res, ms))
+
+export function* fetchAllCards(){
+  yield put(cardsFetched({id: "12345"}))
 }
 
 export function* watchForFetchCards() {
-  yield call(takeEvery, fetchCards, fetchAllCards)
+  yield takeEvery(fetchCards, fetchAllCards)
 }

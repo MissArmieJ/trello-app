@@ -18,7 +18,8 @@ module.exports = {
       hash: true,
       title: "Trello Experiment App",
       template: "./src/index.html",
-      filename: './build/index.html' //relative to root of the application
+      filename: 'index.html',
+      favicon: 'favicon.ico'
     })],
   module: {
     rules: [
