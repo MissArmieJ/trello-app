@@ -1,25 +1,24 @@
 import {connect} from "react-redux"
-import Cards from "../components/cards"
-import {fetchCards} from "../actions/actions"
+import Login from "../components/login"
+import {loggingIn} from "../actions/actions"
 
 const mapStateToProps = state => {
   return {
     ...state,
-    board: state.board,
   }
 }
 
 export const mapDispatchToProps = dispatch => {
   return {
     pageLoaded: () => {
-      dispatch(fetchCards())
+      dispatch(loggingIn())
     },
   }
 }
 
-const CardContainer = connect(
+const LoginContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Cards)
+)(Login)
 
-export default CardContainer
+export default LoginContainer
