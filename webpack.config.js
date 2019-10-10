@@ -1,17 +1,26 @@
 const path = require('path');
-const webpack = require("webpack")
+const webpack = require('webpack');
+const dotenv = require('dotenv');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const env = dotenv.config().parsed;
+
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  return prev;
+}, {});
+
 module.exports = {
+
   mode: 'production',
   context: path.join(__dirname, './'),
   entry: './src/app.js',
   output: {
     path: path.join(__dirname, 'build'),
-    filename: 'bundle.min.js',
+    filename: 'app.min.js',
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js'],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -20,7 +29,8 @@ module.exports = {
       template: "./src/index.html",
       filename: 'index.html',
       favicon: 'favicon.ico'
-    })],
+    }),
+    new webpack.DefinePlugin(envKeys)],
   module: {
     rules: [
       {

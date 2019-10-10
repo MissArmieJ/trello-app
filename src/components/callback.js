@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from 'prop-types';
 
-class Cards extends React.Component {
+class Callback extends React.Component {
   static propTypes = {
     pageLoaded: PropTypes.func,
   }
@@ -11,15 +11,15 @@ class Cards extends React.Component {
   }
 
   componentDidMount() {
-    console.log("cards component did mount")
+    console.log("callback component did mount")
     this.props.pageLoaded()
   }
 
   render() {
     return(
-      <div>Hello World</div>
+      <div>Authenticating...</div>
     )
   }
 }
 
-export default Cards
+export default Callback

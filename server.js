@@ -5,7 +5,7 @@ const app = express();
 app.use(express.static('build'));
 
 app.get("*", function(request, response) {
-  response.sendFile(__dirname + '/src/index.html');
+  response.sendFile(__dirname + '/build/index.html');
 });
 // listen for requests :)
 const port = "8080";

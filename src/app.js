@@ -12,6 +12,7 @@ import reducers from "./reducers"
 import rootSaga from "./sagas"
 import CardContainer from "./containers/cardContainer";
 import LoginContainer from "./containers/loginContainer";
+import CallbackContainer from "./containers/callbackContainer";
 
 const sagaMiddleware = createSagaMiddleware()
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -31,6 +32,7 @@ render(
       <Switch>
         <Route path="/" component={LoginContainer} exact={true} />
         <Route path="/cards" component={CardContainer}  />
+        <Route path="/callback" component={CallbackContainer}  />
       </Switch>
     </Router>
   </Provider>,

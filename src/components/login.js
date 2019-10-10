@@ -11,6 +11,7 @@ class Login extends React.Component {
   }
 
   componentDidMount() {
+    console.log("login component did mount")
     this.props.pageLoaded()
   }
 

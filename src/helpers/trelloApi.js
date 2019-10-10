@@ -21,14 +21,15 @@ const oauth_secrets = {};
 
 const oauth = new OAuth(requestURL, accessURL, key, secret, "1.0A", loginCallback, "HMAC-SHA1")
 
-export const login = function(request, response) {
+export function* login() {
+  console.log("login helper")
   oauth.getOAuthRequestToken(function(error, token, tokenSecret, results){
     oauth_secrets[token] = tokenSecret;
     response.redirect(`${authorizeURL}?oauth_token=${token}&name=${appName}&scope=${scope}&expiration=${expiration}`);
   });
 };
 
-var callback = function(req, res) {
+export function* authenticate() {
   const query = url.parse(req.url, true).query;
   const token = query.oauth_token;
   const tokenSecret = oauth_secrets[token];
